@@ -8,7 +8,7 @@
 class TFTPClient
 {
 private:
-    static const int PORT = 69;
+    static const int PORT = 8888;
     static const int BUFFER_SIZE = 516;
 
     int sfd;
