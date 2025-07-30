@@ -1,0 +1,13 @@
+cmake_minimum_required(VERSION 3.12)
+project(dict_server CXX)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+find_package(SQLite3 REQUIRED)
+find_package(Threads REQUIRED)
+add_executable(server
+src/main.cpp
+src/server.cpp
+src/database_manager.cpp
+)
+target_include_directories(server PRIVATE ${CMAKE_SOURCE_DIR}/src)
+target_link_libraries(server PRIVATE SQLite::SQLite3 Threads::Threads)

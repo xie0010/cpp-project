@@ -1,0 +1,27 @@
+cmake_minimum_required(VERSION 2.8)
+project(dict_client)
+# 设置C++标准
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+# 查找线程库
+find_package(Threads REQUIRED)
+# 查找SQLite3（客户端可能不需要，但保留给未来扩展）
+find_package(SQLite3)
+# 添加可执行文件（直接引用当前目录的源文件）
+add_executable(${PROJECT_NAME}
+client.cpp
+network.cpp
+main.cpp
+)
+# 包含当前目录
+target_include_directories(${PROJECT_NAME} PRIVATE
+${CMAKE_CURRENT_SOURCE_DIR}
+)
+# 链接库
+target_link_libraries(${PROJECT_NAME} PRIVATE
+   Threads::Threads
+)
+# 设置调试编译选项
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+   target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -g)
+endif()
